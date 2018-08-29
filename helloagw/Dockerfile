@@ -10,6 +10,6 @@ FROM alpine:3.8
 COPY --from=gobox /go/main /root/dev/
 RUN chmod +x /root/dev/main
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD ["/root/dev/main"]
