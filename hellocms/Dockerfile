@@ -1,6 +1,15 @@
+FROM golang:1.10-alpine3.8 as gobox
+ADD main.go .
+
+RUN go build main.go
+
+
+
 FROM alpine:3.8
 
-ADD main.go /dev/main.go
-ENV TEST /root
+COPY --from=gobox /go/main /root/dev/
+RUN chmod +x /root/dev/main
 
-CMD ["/bin/bash"]
+EXPOSE 8080
+
+CMD ["/root/dev/main"]
